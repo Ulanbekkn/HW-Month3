@@ -54,7 +54,7 @@ async def mem_1(message: types.Message):
 @dp.message_handler()
 async def echo(message: types.Message):
     if message.text.isdigit():
-        await message.answer(int(message.text) ** int(message.text))
+        await message.answer(int(message.text) ** 2)
     else:
         await bot.send_message(chat_id=message.from_user.id, text=message.text)
 
