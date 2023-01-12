@@ -27,7 +27,7 @@ async def quiz_1(message: types.Message):
         "Guljigit",
         "Maks",
         "Aldapsayr",
-        "Elon Maks"
+        "Elon Mask"
     ]
     await bot.send_poll(chat_id=message.from_user.id, question=question, options=answers, is_anonymous=False,
                         type="quiz", correct_option_id=1, explanation="Top guide", open_period=60, reply_markup=markup)
