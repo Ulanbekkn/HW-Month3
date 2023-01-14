@@ -19,10 +19,12 @@ async def quiz(message: types.Message):
     photo = open("Media/aa.jpg", "rb")
     await bot.send_photo(chat_id=message.chat.id, photo=photo)
     await bot.send_message(chat_id=message.chat.id, text=f"Выберите quiz", reply_markup=markup)
+    photo.close()
 
 async def mem_1(message: types.Message):
     photo = open("Media/hoh.jpg", "rb")
     await bot.send_photo(chat_id=message.chat.id, photo=photo)
+    photo.close()
 
 async def dice_game(message: types.Message):
     username = f"@{message.from_user.username}" \

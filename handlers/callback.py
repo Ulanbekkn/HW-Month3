@@ -13,6 +13,7 @@ async def quiz_1(call: types.CallbackQuery):
     await bot.send_photo(chat_id=call.message.chat.id, photo=photo)
     await bot.send_poll(chat_id=call.message.chat.id, question=question, options=answers, is_anonymous=False,
                         type="quiz", correct_option_id=3, explanation="Top guide", open_period=60)
+    photo.close()
 
 
 async def quiz_2(call: types.CallbackQuery):
@@ -27,6 +28,7 @@ async def quiz_2(call: types.CallbackQuery):
     await bot.send_photo(chat_id=call.message.chat.id, photo=photo)
     await bot.send_poll(chat_id=call.message.chat.id, question=question, options=answers, is_anonymous=False,
                         type="quiz", correct_option_id=2)
+    photo.close()
 
 
 async def quiz_3(call: types.CallbackQuery):

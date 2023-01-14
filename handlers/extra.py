@@ -18,10 +18,10 @@ async def echo(message: types.Message):
     # if message.text.startswith("."):
     #     await bot.pin_chat_message(message.chat.id, message.message_id)
 
-    if message.text == "dice":
+    if message.text.lower() == "dice":
         await bot.send_dice(message.chat.id, emoji="⚽️")
 
-    if message.text.startswith("game"):
+    if message.text.lower().startswith("game"):
         if message.from_user.id in ADMINS:
             animation = choice(["⚽️", "🏀", "🎯", "🎳", "🎰", "🎲"])
             await bot.send_dice(message.chat.id, emoji=animation)
