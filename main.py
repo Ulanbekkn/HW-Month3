@@ -1,17 +1,22 @@
+import asyncio
+
 from aiogram.utils import executor
 import logging
 from config import dp
-from handlers import client, callback, extra, admin, fsmAdminMentor
+from handlers import client, callback, extra, admin, fsmAdminMentor, notification
 from database.bot_db import sql_create
 
 
 async def on_startup(_):
+    asyncio.create_task(notification.scheduler())
     sql_create()
+
 
 client.register_handlers_client(dp)
 callback.register_handlers_callback(dp)
 admin.register_handlers_admin(dp)
 fsmAdminMentor.register_handlers_state(dp)
+notification.register_handlers_notification(dp)
 
 extra.register_handlers_extra(dp)
 if __name__ == '__main__':
