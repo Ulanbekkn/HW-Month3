@@ -14,3 +14,4 @@ def get_message(message):
         frequency_penalty=0.5,
         presence_penalty=0.0,
     )
+    return response['choices'][0]['text']
