@@ -5,7 +5,7 @@ from test import get_message
 
 
 async def echo(message: types.Message):
-    message.answer(get_message(message))
+    await message.answer(get_message(message))
     # bad_words = ["дурак", "fuck", "еблан", "эшек"]
     # username = f"@{message.from_user.username}" \
     #     if message.from_user.username is not None else message.from_user.first_name
