@@ -3,13 +3,17 @@ from aiogram import types, Dispatcher
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from keyboard.client_kb import start_markup
 from database.bot_db import sql_command_random
+from parser.news import parser
+
 
 async def start_handler(message: types.Message):
     await bot.send_message(chat_id=message.chat.id, text=f"Welcome my master {message.from_user.first_name}",
                            reply_markup=start_markup)
 
+
 async def info_handler(message: types.Message):
     await bot.send_message(message.chat.id, f"Нету инфы(")
+
 
 async def quiz(message: types.Message):
     markup = InlineKeyboardMarkup()
@@ -22,10 +26,12 @@ async def quiz(message: types.Message):
     await bot.send_message(chat_id=message.chat.id, text=f"Выберите quiz", reply_markup=markup)
     photo.close()
 
+
 async def mem_1(message: types.Message):
     photo = open("Media/hoh.jpg", "rb")
     await bot.send_photo(chat_id=message.chat.id, photo=photo)
     photo.close()
+
 
 async def dice_game(message: types.Message):
     username = f"@{message.from_user.username}" \
@@ -46,6 +52,12 @@ async def sql_random_user(message: types.Message):
     await sql_command_random(message)
 
 
+async def get_news(message: types.Message):
+    news = parser()
+    for i in news:
+        await message.answer(f"{i['title']}\n{i['description']}\n{i['date']}")
+
+
 def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(start_handler, commands=["start"])
     dp.register_message_handler(quiz, commands=["quiz"])
@@ -53,6 +65,4 @@ def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(info_handler, commands=["info"])
     dp.register_message_handler(dice_game, commands=["dice"])
     dp.register_message_handler(sql_random_user, commands=["get"])
-
-
-
+    dp.register_message_handler(get_news, commands=["news"])
